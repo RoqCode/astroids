@@ -9,7 +9,9 @@ from constants import (
     ASTEROID_SPAWN_RATE,
     ASTEROID_MIN_RADIUS,
     ASTEROID_MAX_RADIUS,
+    PLAYER_RADIUS,
 )
+from player import Player
 
 
 def main():
@@ -20,12 +22,16 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+
+        player.draw(screen)
+
         pygame.display.flip()
         tick = clock.tick(60)
         dt = tick / 1000
